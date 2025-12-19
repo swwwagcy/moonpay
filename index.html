@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoonPay Exclusive Campaign</title>
+    <title>MoonPay Exclusive Campaign | VIBE</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -78,7 +78,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
-            margin-bottom: 8px; /* 增加標題與副標題間距 */
+            margin-bottom: 8px;
         }
 
         .campaign-tag {
@@ -103,7 +103,7 @@
             display: flex;
             gap: 2px;
             backdrop-filter: blur(10px);
-            flex-shrink: 0; /* 防止被長標題擠壓 */
+            flex-shrink: 0;
             margin-left: 16px;
         }
 
@@ -132,12 +132,13 @@
             background: linear-gradient(160deg, rgba(43, 26, 82, 0.8), rgba(20, 10, 40, 0.9));
             border: 1px solid var(--border-light);
             border-radius: 24px;
-            padding: 32px 24px;
+            padding: 40px 24px;
             margin-bottom: 24px;
             box-shadow: var(--shadow-glow);
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
+            text-align: center; /* Center align for emphasis */
         }
 
         .stats-card::before {
@@ -148,36 +149,59 @@
             opacity: 0.5;
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
+        /* --- New Hierarchical Stats Styles --- */
+        
+        /* Primary (Bonus) Area */
+        .stat-focus {
+            margin-bottom: 32px;
+            position: relative;
+        }
+        
+        .stat-focus .stat-label {
+            font-size: 13px;
+            color: var(--crypto-cyan);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: block;
+            font-weight: 600;
+        }
+        
+        .stat-focus .stat-value {
+            font-family: var(--font-code);
+            font-size: 56px; /* Huge font for emphasis */
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            text-shadow: 0 0 25px rgba(0, 229, 255, 0.5); /* Stronger glow */
+            display: block;
         }
 
-        .stat-item {
-            display: flex;
-            flex-direction: column;
+        /* Secondary (Total) Area */
+        .stat-sub {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 10px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 10px 20px;
+            border-radius: 12px;
         }
 
-        .stat-label {
+        .stat-sub .stat-label {
             font-size: 12px;
             color: var(--text-dim);
-            margin-bottom: 8px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        .stat-value {
+        .stat-sub .stat-value {
             font-family: var(--font-code);
-            font-size: 32px;
-            font-weight: 700;
+            font-size: 18px;
             color: #fff;
+            font-weight: 600;
         }
 
-        .stat-value.highlight {
-            color: var(--crypto-cyan);
-            text-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
-        }
 
         /* Loading / Error States */
         .state-container {
@@ -312,7 +336,7 @@
         @media (max-width: 480px) {
             .header-section { flex-direction: column; gap: 16px; }
             .lang-switcher { align-self: flex-start; margin-left: 0; }
-            .stats-grid { grid-template-columns: 1fr; gap: 24px; }
+            .stat-focus .stat-value { font-size: 48px; } /* Slightly smaller on mobile */
             .container { padding: 30px 16px 60px; }
         }
     </style>
@@ -326,7 +350,6 @@
         <!-- Header -->
         <header class="header-section">
             <div>
-                <!-- Added data-i18n to brand-title -->
                 <div class="brand-title" data-i18n="brand_title">VIBE × MoonPay</div>
                 <div class="campaign-tag" data-i18n="campaign_tag">5% Diamond Bonus Event</div>
             </div>
@@ -608,20 +631,20 @@
                 }
             },
 
+            // --- Revised Render Stats (Hierarchical) ---
             renderStats: function(data) {
                 const t = TRANSLATIONS[this.currentLang];
                 const contentEl = document.getElementById('api-content');
                 
                 contentEl.innerHTML = `
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <span class="stat-label">${t.total_bought}</span>
-                            <span class="stat-value">${data.total_diamond_amount.toLocaleString()}</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">${t.total_bonus}</span>
-                            <span class="stat-value highlight">+${data.total_bonus_diamonds.toLocaleString()}</span>
-                        </div>
+                    <div class="stat-focus">
+                        <span class="stat-label">${t.total_bonus}</span>
+                        <span class="stat-value highlight">+${data.total_bonus_diamonds.toLocaleString()}</span>
+                    </div>
+
+                    <div class="stat-sub">
+                        <span class="stat-label">${t.total_bought}:</span>
+                        <span class="stat-value">${data.total_diamond_amount.toLocaleString()}</span>
                     </div>
                 `;
             },
@@ -675,7 +698,7 @@
                 renderList('campaign-list', t.campaign_rules);
                 renderList('transaction-list', t.transaction_rules);
 
-                if (this.userId && document.querySelector('.stats-grid')) {
+                if (this.userId && document.querySelector('.stat-focus')) {
                     this.fetchData();
                 } else if (!this.userId) {
                     this.renderNoIdState();
