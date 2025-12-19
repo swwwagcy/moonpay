@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoonPay Exclusive Campaign | VIBE</title>
+    <title>MoonPay Exclusive Campaign</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -78,19 +78,20 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
+            margin-bottom: 8px; /* 增加標題與副標題間距 */
         }
 
         .campaign-tag {
             font-size: 11px;
             background: rgba(0, 229, 255, 0.1);
             color: var(--crypto-cyan);
-            padding: 4px 8px;
-            border-radius: 4px;
+            padding: 6px 10px;
+            border-radius: 6px;
             border: 1px solid rgba(0, 229, 255, 0.3);
             display: inline-block;
-            margin-top: 6px;
             font-weight: 600;
             letter-spacing: 0.5px;
+            line-height: 1.4;
         }
 
         /* Language Switcher */
@@ -102,6 +103,8 @@
             display: flex;
             gap: 2px;
             backdrop-filter: blur(10px);
+            flex-shrink: 0; /* 防止被長標題擠壓 */
+            margin-left: 16px;
         }
 
         .lang-btn {
@@ -129,7 +132,7 @@
             background: linear-gradient(160deg, rgba(43, 26, 82, 0.8), rgba(20, 10, 40, 0.9));
             border: 1px solid var(--border-light);
             border-radius: 24px;
-            padding: 24px;
+            padding: 32px 24px;
             margin-bottom: 24px;
             box-shadow: var(--shadow-glow);
             backdrop-filter: blur(10px);
@@ -143,27 +146,6 @@
             top: 0; left: 0; width: 100%; height: 2px;
             background: linear-gradient(90deg, transparent, var(--crypto-cyan), transparent);
             opacity: 0.5;
-        }
-
-        .user-id-display {
-            font-family: var(--font-code);
-            font-size: 11px;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(0,0,0,0.2);
-            padding: 6px 12px;
-            border-radius: 6px;
-            width: fit-content;
-        }
-        
-        .status-dot {
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background-color: var(--crypto-green);
-            box-shadow: 0 0 5px var(--crypto-green);
         }
 
         .stats-grid {
@@ -180,25 +162,27 @@
         .stat-label {
             font-size: 12px;
             color: var(--text-dim);
-            margin-bottom: 4px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .stat-value {
             font-family: var(--font-code);
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
             color: #fff;
         }
 
         .stat-value.highlight {
             color: var(--crypto-cyan);
-            text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+            text-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
         }
 
         /* Loading / Error States */
         .state-container {
             text-align: center;
-            padding: 30px 0;
+            padding: 20px 0;
             color: var(--text-muted);
             font-size: 13px;
         }
@@ -219,14 +203,6 @@
             font-size: 12px;
             margin-top: 10px;
             text-align: left;
-        }
-        .debug-info {
-            margin-top: 8px;
-            font-family: var(--font-code);
-            font-size: 10px;
-            color: var(--text-muted);
-            opacity: 0.7;
-            word-break: break-all;
         }
 
         /* History List */
@@ -335,7 +311,7 @@
         /* Mobile Adjustments */
         @media (max-width: 480px) {
             .header-section { flex-direction: column; gap: 16px; }
-            .lang-switcher { align-self: flex-end; }
+            .lang-switcher { align-self: flex-start; margin-left: 0; }
             .stats-grid { grid-template-columns: 1fr; gap: 24px; }
             .container { padding: 30px 16px 60px; }
         }
@@ -350,7 +326,8 @@
         <!-- Header -->
         <header class="header-section">
             <div>
-                <div class="brand-title">VIBE × MoonPay</div>
+                <!-- Added data-i18n to brand-title -->
+                <div class="brand-title" data-i18n="brand_title">VIBE × MoonPay</div>
                 <div class="campaign-tag" data-i18n="campaign_tag">5% Diamond Bonus Event</div>
             </div>
             
@@ -368,7 +345,7 @@
                 <!-- Javascript will inject content here -->
                 <div class="state-container">
                     <div class="spinner"></div>
-                    <span data-i18n="loading">Connecting to Neural Network...</span>
+                    <span data-i18n="loading">Loading Data...</span>
                 </div>
             </div>
         </section>
@@ -401,7 +378,7 @@
         </section>
 
         <footer>
-            <span data-i18n="footer_text">© 2025 MoonPay Campaign. All rights reserved.</span>
+            <span data-i18n="footer_text">© 2025 MoonPay Campaign Page</span>
         </footer>
 
     </div>
@@ -410,8 +387,9 @@
         // --- 1. Content & Translations ---
         const TRANSLATIONS = {
             tw: {
-                campaign_tag: "MoonPay 上線限定 5% 加碼",
-                loading: "正在讀取區塊鏈資料...",
+                brand_title: "歡慶 MoonPay 上線",
+                campaign_tag: "限定加碼，虛擬貨幣購買鑽石享 5% 鑽石回饋",
+                loading: "正在讀取資料...",
                 error_title: "連線失敗",
                 no_id: "未偵測到用戶 ID",
                 no_id_desc: "請確保透過正確的活動連結進入。",
@@ -420,7 +398,7 @@
                 history_title: "購買紀錄",
                 section_campaign: "活動注意事項",
                 section_transaction: "交易注意事項",
-                footer_text: "© 2025 MoonPay 活動頁面 | VIBE",
+                footer_text: "© 2025 MoonPay 活動頁面",
                 campaign_rules: [
                     "本次 5% 鑽石加碼活動為 <strong>MoonPay 上線限定</strong>，優惠期間為 [開始日期] 至 [結束日期]。",
                     "5% 鑽石加碼將在您完成 MoonPay 支付後，約 <strong>10~15 分鐘後</strong> 進行發送。"
@@ -434,8 +412,9 @@
                 ]
             },
             cn: {
-                campaign_tag: "MoonPay 上线限定 5% 加码",
-                loading: "正在读取区块链数据...",
+                brand_title: "欢庆 MoonPay 上线",
+                campaign_tag: "限定加码，虚拟货币购买钻石享 5% 钻石回馈",
+                loading: "正在读取数据...",
                 error_title: "连接失败",
                 no_id: "未检测到用户 ID",
                 no_id_desc: "请确保通过正确的活动链接进入。",
@@ -444,7 +423,7 @@
                 history_title: "购买记录",
                 section_campaign: "活动注意事项",
                 section_transaction: "交易注意事项",
-                footer_text: "© 2025 MoonPay 活动页面 | VIBE",
+                footer_text: "© 2025 MoonPay 活动页面",
                 campaign_rules: [
                     "本次 5% 钻石加码活动为 <strong>MoonPay 上线限定</strong>，优惠期间为 [开始日期] 至 [结束日期]。",
                     "5% 钻石加码将在您完成 MoonPay 支付后，约 <strong>10~15 分钟后</strong> 进行发送。"
@@ -458,8 +437,9 @@
                 ]
             },
             en: {
-                campaign_tag: "MoonPay Exclusive 5% Bonus",
-                loading: "Fetching Blockchain Data...",
+                brand_title: "Celebrating MoonPay Launch",
+                campaign_tag: "Exclusive Bonus: Get 5% Extra Diamonds with Crypto",
+                loading: "Fetching Data...",
                 error_title: "Connection Failed",
                 no_id: "User ID Not Found",
                 no_id_desc: "Please access this page via a valid campaign link.",
@@ -468,7 +448,7 @@
                 history_title: "Transaction History",
                 section_campaign: "Campaign Details",
                 section_transaction: "Transaction Notes",
-                footer_text: "© 2025 MoonPay Campaign | VIBE",
+                footer_text: "© 2025 MoonPay Campaign Page",
                 campaign_rules: [
                     "This 5% Diamond Bonus is a <strong>MoonPay Launch Exclusive</strong>. Valid from [Start Date] to [End Date].",
                     "The 5% bonus will be distributed approximately <strong>10-15 minutes</strong> after payment completion."
@@ -482,8 +462,9 @@
                 ]
             },
             jp: {
-                campaign_tag: "MoonPay 限定 5% 増量",
-                loading: "ブロックチェーンデータを取得中...",
+                brand_title: "MoonPay リリース記念",
+                campaign_tag: "限定特典：暗号資産での購入でダイヤ5%還元",
+                loading: "データを取得中...",
                 error_title: "接続エラー",
                 no_id: "ユーザーIDが見つかりません",
                 no_id_desc: "正しいキャンペーンリンクからアクセスしてください。",
@@ -492,7 +473,7 @@
                 history_title: "購入履歴",
                 section_campaign: "キャンペーン注意事項",
                 section_transaction: "取引に関する注意事項",
-                footer_text: "© 2025 MoonPay Campaign | VIBE",
+                footer_text: "© 2025 MoonPay キャンペーンページ",
                 campaign_rules: [
                     "本5%増量キャンペーンは <strong>MoonPay リリース記念限定</strong> です。期間：[開始日] ～ [終了日]。",
                     "5%のボーナスダイヤは、MoonPay での決済完了後、約 <strong>10～15分後</strong> に付与されます。"
@@ -561,7 +542,7 @@
                 });
             },
 
-            // --- User ID Parsing Logic (Requirement 3) ---
+            // --- User ID Parsing Logic ---
             parseUserId: function() {
                 const url = window.location.href;
                 
@@ -572,9 +553,9 @@
                     return;
                 }
 
-                // 2. Hash Params (#user_id=) - For Iframe compatibility
+                // 2. Hash Params (#user_id=)
                 if (window.location.hash) {
-                    const hashContent = window.location.hash.substring(1); // remove #
+                    const hashContent = window.location.hash.substring(1);
                     const hashParams = new URLSearchParams(hashContent);
                     if (hashParams.get('user_id')) {
                         this.userId = hashParams.get('user_id');
@@ -582,15 +563,14 @@
                     }
                 }
 
-                // 3. Regex Fallback (Brute force search in string)
-                // Looks for standard 24-char hex ID often used in DBs
+                // 3. Regex Fallback
                 const match = url.match(/user_id=([a-zA-Z0-9]{24})/);
                 if (match && match[1]) {
                     this.userId = match[1];
                 }
             },
 
-            // --- API Fetching (Requirement 3) ---
+            // --- API Fetching ---
             fetchData: async function() {
                 const contentEl = document.getElementById('api-content');
                 const t = TRANSLATIONS[this.currentLang];
@@ -598,7 +578,7 @@
                 try {
                     const response = await fetch(`${this.apiUrl}/?user_id=${this.userId}`, {
                         method: 'GET',
-                        credentials: 'omit', // Important for third-party iframe cookies
+                        credentials: 'omit',
                         headers: {
                             'Content-Type': 'application/json'
                         }
@@ -623,7 +603,6 @@
                             <div class="error-box">
                                 ${error.message}
                             </div>
-                            <div class="debug-info">ID: ${this.userId}</div>
                         </div>
                     `;
                 }
@@ -634,10 +613,6 @@
                 const contentEl = document.getElementById('api-content');
                 
                 contentEl.innerHTML = `
-                    <div class="user-id-display">
-                        <div class="status-dot"></div>
-                        ID: ${data.user_id}
-                    </div>
                     <div class="stats-grid">
                         <div class="stat-item">
                             <span class="stat-label">${t.total_bought}</span>
@@ -687,13 +662,11 @@
             renderStaticContent: function() {
                 const t = TRANSLATIONS[this.currentLang];
 
-                // Simple text replacements
                 document.querySelectorAll('[data-i18n]').forEach(el => {
                     const key = el.getAttribute('data-i18n');
                     if (t[key]) el.innerHTML = t[key];
                 });
 
-                // Complex List rendering
                 const renderList = (id, items) => {
                     const el = document.getElementById(id);
                     el.innerHTML = items.map(item => `<li>${item}</li>`).join('');
@@ -702,10 +675,7 @@
                 renderList('campaign-list', t.campaign_rules);
                 renderList('transaction-list', t.transaction_rules);
 
-                // Re-render API data if exists (to update labels)
                 if (this.userId && document.querySelector('.stats-grid')) {
-                    // This is a quick refresh, ideally we store data in state to avoid re-fetch,
-                    // but calling fetchData again is safer for I18n label updates in this simple structure.
                     this.fetchData();
                 } else if (!this.userId) {
                     this.renderNoIdState();
@@ -713,7 +683,6 @@
             }
         };
 
-        // Start
         document.addEventListener('DOMContentLoaded', () => {
             app.init();
         });
