@@ -138,7 +138,7 @@
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
-            text-align: center; /* Center align for emphasis */
+            text-align: center;
         }
 
         .stats-card::before {
@@ -149,7 +149,7 @@
             opacity: 0.5;
         }
 
-        /* --- New Hierarchical Stats Styles --- */
+        /* --- Hierarchical Stats Styles --- */
         
         /* Primary (Bonus) Area */
         .stat-focus {
@@ -169,11 +169,11 @@
         
         .stat-focus .stat-value {
             font-family: var(--font-code);
-            font-size: 56px; /* Huge font for emphasis */
+            font-size: 56px;
             font-weight: 700;
             line-height: 1;
             color: #fff;
-            text-shadow: 0 0 25px rgba(0, 229, 255, 0.5); /* Stronger glow */
+            text-shadow: 0 0 25px rgba(0, 229, 255, 0.5);
             display: block;
         }
 
@@ -201,7 +201,6 @@
             color: #fff;
             font-weight: 600;
         }
-
 
         /* Loading / Error States */
         .state-container {
@@ -336,7 +335,7 @@
         @media (max-width: 480px) {
             .header-section { flex-direction: column; gap: 16px; }
             .lang-switcher { align-self: flex-start; margin-left: 0; }
-            .stat-focus .stat-value { font-size: 48px; } /* Slightly smaller on mobile */
+            .stat-focus .stat-value { font-size: 48px; }
             .container { padding: 30px 16px 60px; }
         }
     </style>
@@ -424,7 +423,8 @@
                 footer_text: "© 2025 MoonPay 活動頁面",
                 campaign_rules: [
                     "本次 5% 鑽石加碼活動為 <strong>MoonPay 上線限定</strong>，優惠期間為 [開始日期] 至 [結束日期]。",
-                    "5% 鑽石加碼將在您完成 MoonPay 支付後，約 <strong>10~15 分鐘後</strong> 進行發送。"
+                    "5% 鑽石加碼將在您完成 MoonPay 支付後，約 <strong>10~15 分鐘後</strong> 進行發送。",
+                    "<strong>回饋計算方式：</strong> 單筆 × 5% 後 <strong>四捨五入至個位數</strong>（例：61,999 × 5% = 3,099.5 ➜ 3,100）。"
                 ],
                 transaction_rules: [
                     "<strong>目前支援幣種：</strong> 主要包含 USDT, USDC, ETH, BTC。實際支援幣種請以 MoonPay 結帳頁面顯示為準。",
@@ -449,7 +449,8 @@
                 footer_text: "© 2025 MoonPay 活动页面",
                 campaign_rules: [
                     "本次 5% 钻石加码活动为 <strong>MoonPay 上线限定</strong>，优惠期间为 [开始日期] 至 [结束日期]。",
-                    "5% 钻石加码将在您完成 MoonPay 支付后，约 <strong>10~15 分钟后</strong> 进行发送。"
+                    "5% 钻石加码将在您完成 MoonPay 支付后，约 <strong>10~15 分钟后</strong> 进行发送。",
+                    "<strong>回馈计算方式：</strong> 单笔 × 5% 后 <strong>四舍五入至个位数</strong>（例：61,999 × 5% = 3,099.5 ➜ 3,100）。"
                 ],
                 transaction_rules: [
                     "<strong>目前支持币种：</strong> 主要包含 USDT, USDC, ETH, BTC。实际支持币种请以 MoonPay 结账页面显示为准。",
@@ -474,7 +475,8 @@
                 footer_text: "© 2025 MoonPay Campaign Page",
                 campaign_rules: [
                     "This 5% Diamond Bonus is a <strong>MoonPay Launch Exclusive</strong>. Valid from [Start Date] to [End Date].",
-                    "The 5% bonus will be distributed approximately <strong>10-15 minutes</strong> after payment completion."
+                    "The 5% bonus will be distributed approximately <strong>10-15 minutes</strong> after payment completion.",
+                    "<strong>Calculation:</strong> 5% of transaction amount, <strong>rounded to the nearest integer</strong> (e.g., 61,999 × 5% = 3,099.5 ➜ 3,100)."
                 ],
                 transaction_rules: [
                     "<strong>Supported Currencies:</strong> Primarily USDT, USDC, ETH, BTC. Please refer to the MoonPay checkout page for actual availability.",
@@ -499,7 +501,8 @@
                 footer_text: "© 2025 MoonPay キャンペーンページ",
                 campaign_rules: [
                     "本5%増量キャンペーンは <strong>MoonPay リリース記念限定</strong> です。期間：[開始日] ～ [終了日]。",
-                    "5%のボーナスダイヤは、MoonPay での決済完了後、約 <strong>10～15分後</strong> に付与されます。"
+                    "5%のボーナスダイヤは、MoonPay での決済完了後、約 <strong>10～15分後</strong> に付与されます。",
+                    "<strong>計算方法：</strong> 購入額 × 5% を <strong>四捨五入して整数化</strong>（例：61,999 × 5% = 3,099.5 ➜ 3,100）。"
                 ],
                 transaction_rules: [
                     "<strong>対応通貨：</strong> 主に USDT, USDC, ETH, BTC。実際の対応通貨は MoonPay 決済画面をご確認ください。",
@@ -631,7 +634,7 @@
                 }
             },
 
-            // --- Revised Render Stats (Hierarchical) ---
+            // --- Render Stats ---
             renderStats: function(data) {
                 const t = TRANSLATIONS[this.currentLang];
                 const contentEl = document.getElementById('api-content');
