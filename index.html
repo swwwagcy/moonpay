@@ -16,9 +16,9 @@
             --bg-purple-card: rgba(43, 26, 82, 0.6);
             --bg-glass: rgba(255, 255, 255, 0.03);
             
-            --primary-accent: #7856ff; /* Mixpanel Purple */
+            --primary-accent: #7856ff; 
             --secondary-accent: #a382ff;
-            --crypto-cyan: #00e5ff;    /* Future Tech Neon */
+            --crypto-cyan: #00e5ff;    
             --crypto-green: #00d084;
             
             --text-white: #ffffff;
@@ -45,7 +45,6 @@
                 radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.08) 0%, transparent 40%);
         }
 
-        /* 頂部裝飾條 */
         .top-bar {
             height: 4px;
             background: linear-gradient(90deg, var(--primary-accent), var(--crypto-cyan));
@@ -62,7 +61,6 @@
             position: relative;
         }
 
-        /* Header Area */
         .header-section {
             display: flex;
             justify-content: space-between;
@@ -94,7 +92,6 @@
             line-height: 1.4;
         }
 
-        /* Language Switcher */
         .lang-switcher {
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.1);
@@ -125,9 +122,6 @@
             box-shadow: 0 2px 10px rgba(120, 86, 255, 0.4);
         }
 
-        .lang-btn:hover:not(.active) { color: var(--text-white); }
-
-        /* API Data Stats Card */
         .stats-card {
             background: linear-gradient(160deg, rgba(43, 26, 82, 0.8), rgba(20, 10, 40, 0.9));
             border: 1px solid var(--border-light);
@@ -141,20 +135,7 @@
             text-align: center;
         }
 
-        .stats-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--crypto-cyan), transparent);
-            opacity: 0.5;
-        }
-
-        /* --- Hierarchical Stats Styles --- */
-        .stat-focus {
-            margin-bottom: 32px;
-            position: relative;
-        }
-        
+        .stat-focus { margin-bottom: 32px; }
         .stat-focus .stat-label {
             font-size: 13px;
             color: var(--crypto-cyan);
@@ -164,7 +145,6 @@
             display: block;
             font-weight: 600;
         }
-        
         .stat-focus .stat-value {
             font-family: var(--font-code);
             font-size: 56px;
@@ -172,7 +152,6 @@
             line-height: 1;
             color: #fff;
             text-shadow: 0 0 25px rgba(0, 229, 255, 0.5);
-            display: block;
         }
 
         .stat-sub {
@@ -185,27 +164,7 @@
             border-radius: 12px;
         }
 
-        .stat-sub .stat-label {
-            font-size: 12px;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .stat-sub .stat-value {
-            font-family: var(--font-code);
-            font-size: 18px;
-            color: #fff;
-            font-weight: 600;
-        }
-
-        /* Loading / Error States */
-        .state-container {
-            text-align: center;
-            padding: 20px 0;
-            color: var(--text-muted);
-            font-size: 13px;
-        }
+        .state-container { text-align: center; padding: 20px 0; color: var(--text-muted); }
         .spinner {
             width: 20px; height: 20px;
             border: 2px solid var(--primary-accent);
@@ -214,18 +173,7 @@
             animation: spin 0.8s linear infinite;
             margin: 0 auto 10px;
         }
-        .error-box {
-            background: rgba(255, 80, 80, 0.1);
-            border: 1px solid rgba(255, 80, 80, 0.3);
-            color: #ff6b6b;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            margin-top: 10px;
-            text-align: left;
-        }
 
-        /* Debug Info */
         .debug-url {
             margin-top: 16px;
             padding: 10px;
@@ -236,119 +184,30 @@
             font-size: 10px;
             color: var(--text-muted);
             word-break: break-all;
-            text-align: center;
-            line-height: 1.4;
+            text-align: left;
         }
 
-        /* History List */
-        .history-section {
-            margin-bottom: 30px;
-        }
-        .section-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-white);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .section-title::before {
-            content: '';
-            width: 3px; height: 16px;
-            background: var(--primary-accent);
-            border-radius: 2px;
-        }
+        .history-section { margin-bottom: 30px; }
+        .section-title { font-size: 16px; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .section-title::before { content: ''; width: 3px; height: 16px; background: var(--primary-accent); border-radius: 2px; }
+        .history-list { background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); max-height: 200px; overflow-y: auto; }
+        .history-item { display: flex; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 13px; }
         
-        .history-list {
-            background: rgba(255,255,255,0.02);
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.05);
-            max-height: 200px;
-            overflow-y: auto;
-        }
+        .rules-card { background: rgba(255,255,255,0.02); border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.05); }
+        .rule-group { margin-bottom: 24px; }
+        .rule-title { color: var(--secondary-accent); font-size: 14px; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; }
+        .rule-list { list-style: none; }
+        .rule-list li { position: relative; padding-left: 20px; margin-bottom: 10px; font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+        .rule-list li::before { content: '•'; color: var(--primary-accent); position: absolute; left: 0; }
 
-        .history-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 16px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            font-size: 13px;
-        }
-        .history-item:last-child { border-bottom: none; }
-        .history-date { color: var(--text-dim); font-size: 12px; }
-        .history-amount { font-family: var(--font-code); color: #fff; }
-        .history-bonus { color: var(--crypto-cyan); font-weight: 600; margin-left: 8px; font-size: 11px; }
-
-        /* Campaign Rules (Accordion Style) */
-        .rules-card {
-            background: rgba(255,255,255,0.02);
-            border-radius: 16px;
-            padding: 24px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .rule-group {
-            margin-bottom: 24px;
-        }
-        .rule-group:last-child { margin-bottom: 0; }
-
-        .rule-title {
-            color: var(--secondary-accent);
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .rule-list {
-            list-style: none;
-        }
-
-        .rule-list li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 10px;
-            font-size: 13px;
-            line-height: 1.6;
-            color: var(--text-dim);
-        }
-
-        .rule-list li::before {
-            content: '•';
-            color: var(--primary-accent);
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-
-        .rule-list strong {
-            color: #fff;
-        }
-
-        footer {
-            margin-top: 40px;
-            text-align: center;
-            font-size: 12px;
-            color: var(--text-muted);
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 20px;
-        }
-
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
-        ::-webkit-scrollbar-thumb { background: rgba(120, 86, 255, 0.3); border-radius: 3px; }
-
+        footer { margin-top: 40px; text-align: center; font-size: 12px; color: var(--text-muted); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; }
+        
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* Mobile Adjustments */
         @media (max-width: 480px) {
             .header-section { flex-direction: column; gap: 16px; }
             .lang-switcher { align-self: flex-start; margin-left: 0; }
             .stat-focus .stat-value { font-size: 48px; }
-            .container { padding: 30px 16px 60px; }
         }
     </style>
 </head>
@@ -357,26 +216,21 @@
     <div class="top-bar"></div>
 
     <div class="container">
-        
-        <!-- Header -->
         <header class="header-section">
             <div>
                 <div class="brand-title" data-i18n="brand_title">VIBE × MoonPay</div>
                 <div class="campaign-tag" data-i18n="campaign_tag">5% Diamond Bonus Event</div>
             </div>
-            
             <nav class="lang-switcher">
                 <button class="lang-btn" onclick="app.setLang('tw')">繁</button>
                 <button class="lang-btn" onclick="app.setLang('cn')">简</button>
-                <button class="lang-btn active" onclick="app.setLang('en')">EN</button>
+                <button class="lang-btn" onclick="app.setLang('en')">EN</button>
                 <button class="lang-btn" onclick="app.setLang('jp')">JP</button>
             </nav>
         </header>
 
-        <!-- API Stats Area -->
         <section class="stats-card">
             <div id="api-content">
-                <!-- Javascript will inject content here -->
                 <div class="state-container">
                     <div class="spinner"></div>
                     <span data-i18n="loading">Loading Data...</span>
@@ -384,41 +238,28 @@
             </div>
         </section>
 
-        <!-- Transaction History -->
         <section class="history-section" id="history-section" style="display:none;">
             <div class="section-title" data-i18n="history_title">Transaction Log</div>
-            <div class="history-list" id="history-list">
-                <!-- History Items -->
-            </div>
+            <div class="history-list" id="history-list"></div>
         </section>
 
-        <!-- Rules & Notices -->
         <section class="rules-card">
-            
             <div class="rule-group">
                 <div class="rule-title" data-i18n="section_campaign">CAMPAIGN NOTICES</div>
-                <ul class="rule-list" id="campaign-list">
-                    <!-- Dynamic Content -->
-                </ul>
+                <ul class="rule-list" id="campaign-list"></ul>
             </div>
-
             <div class="rule-group">
                 <div class="rule-title" data-i18n="section_transaction">TRANSACTION NOTICES</div>
-                <ul class="rule-list" id="transaction-list">
-                    <!-- Dynamic Content -->
-                </ul>
+                <ul class="rule-list" id="transaction-list"></ul>
             </div>
-
         </section>
 
         <footer>
             <span data-i18n="footer_text">© 2025 MoonPay Campaign Page</span>
         </footer>
-
     </div>
 
     <script>
-        // --- 1. Content & Translations ---
         const TRANSLATIONS = {
             tw: {
                 brand_title: "歡慶 MoonPay 上線",
@@ -437,15 +278,37 @@
                     "本次 5% 鑽石加碼活動為 <strong>MoonPay 上線限定</strong>，優惠期間為 1/5 00:00 - 1/9 23:59 UTC+8。",
                     "5% 鑽石加碼將在您完成 MoonPay 支付後，約 <strong>10~15 分鐘後</strong> 進行發送。",
                     "<strong>回饋計算方式：</strong> 單筆 × 5% 後 <strong>四捨五入至個位數</strong>（例：61,999 × 5% = 3,099.5 ➜ 3,100）。",
-                    "帳號使用異常者，系統有權取消返鑽資格。",
-                    "實際返鑽以系統計算為準，資料更新時間為 5 分鐘，需登入帳號以正確顯示。活動頁面僅呈現活動期間之交易紀錄。"
+                    "實際返鑽以系統計算為準，資料更新時間為 5 分鐘。",
+                    "活動頁面僅呈現活動期間之交易紀錄。"
                 ],
                 transaction_rules: [
-                    "<strong>目前支援幣種：</strong> 主要包含 USDT, USDC, ETH, BTC。實際支援幣種請以 MoonPay 結帳頁面顯示為準。",
-                    "<strong>計價基準：</strong> 您在 MoonPay 頁面確認的 <strong>最終加密貨幣金額</strong>，已包含當前匯率換算、交易手續費（Gas Fee）及服務費。",
-                    "<strong>匯率浮動：</strong> 報價設有 <strong>時效性</strong>，請務必在時效內完成轉帳，超時需重新報價。",
-                    "<strong>交易不可逆性：</strong> 加密貨幣交易一經發送即無法取消，請核對資訊。",
-                    "<strong>退款政策：</strong> 透過 MoonPay 購買的鑽石 <strong>原則上不提供退款</strong>。特殊情況退款將以當時法幣價值計算。"
+                    "<strong>目前支援幣種：</strong> 主要包含 USDT, USDC, ETH, BTC。",
+                    "<strong>匯率浮動：</strong> 報價設有 <strong>時效性</strong>，請務必在時效內完成轉帳。",
+                    "<strong>交易不可逆性：</strong> 加密貨幣交易一經發送即無法取消。"
+                ]
+            },
+            en: {
+                brand_title: "Celebrating MoonPay Launch",
+                campaign_tag: "Exclusive Bonus: Get 5% Extra Diamonds with Crypto",
+                loading: "Fetching Data...",
+                error_title: "Connection Failed",
+                no_id: "User ID Not Found",
+                no_id_desc: "Please access this page via a valid campaign link.",
+                total_bought: "Total Diamonds",
+                total_bonus: "Bonus Earned (5%)",
+                history_title: "Transaction History",
+                section_campaign: "Campaign Details",
+                section_transaction: "Transaction Notes",
+                footer_text: "© 2025 MoonPay Campaign Page",
+                campaign_rules: [
+                    "This 5% Diamond Bonus is a <strong>MoonPay Launch Exclusive</strong>. Valid from 1/5 00:00 - 1/9 23:59 UTC+8.",
+                    "Bonus will be distributed approximately <strong>10-15 minutes</strong> after payment.",
+                    "<strong>Calculation:</strong> 5% of amount, <strong>rounded to integer</strong>.",
+                    "Data is updated every 5 minutes."
+                ],
+                transaction_rules: [
+                    "<strong>Supported Currencies:</strong> USDT, USDC, ETH, BTC.",
+                    "<strong>Irreversibility:</strong> Crypto transactions cannot be cancelled once sent."
                 ]
             },
             cn: {
@@ -464,44 +327,12 @@
                 campaign_rules: [
                     "本次 5% 钻石加码活动为 <strong>MoonPay 上线限定</strong>，优惠期间为 1/5 00:00 - 1/9 23:59 UTC+8。",
                     "5% 钻石加码将在您完成 MoonPay 支付后，约 <strong>10~15 分钟后</strong> 进行发送。",
-                    "<strong>回馈计算方式：</strong> 单笔 × 5% 后 <strong>四舍五入至个位数</strong>（例：61,999 × 5% = 3,099.5 ➜ 3,100）。",
-                    "账号使用异常者，系统有权取消返钻资格。",
-                    "实际返钻以系统计算为准，数据更新时间为 5 分钟，需登录账号以正确显示。活动页面仅呈现活动期间之交易纪录。"
+                    "<strong>回馈计算方式：</strong> 单笔 × 5% 后 <strong>四舍五入至个位数</strong>。",
+                    "实际返钻以系统计算为准，数据更新时间为 5 分钟。"
                 ],
                 transaction_rules: [
-                    "<strong>目前支持币种：</strong> 主要包含 USDT, USDC, ETH, BTC。实际支持币种请以 MoonPay 结账页面显示为准。",
-                    "<strong>计价基准：</strong> 您在 MoonPay 页面确认的 <strong>最终加密货币金额</strong>，已包含当前汇率换算、交易手续费（Gas Fee）及服务费。",
-                    "<strong>汇率浮动：</strong> 报价设有 <strong>时效性</strong>，请务必在时效内完成转账，超时需重新报价。",
-                    "<strong>交易不可逆性：</strong> 加密货币交易一经发送即无法取消，请核对信息。",
-                    "<strong>退款政策：</strong> 通过 MoonPay 购买的钻石 <strong>原则上不提供退款</strong>。特殊情况退款将以当时法币价值计算。"
-                ]
-            },
-            en: {
-                brand_title: "Celebrating MoonPay Launch",
-                campaign_tag: "Exclusive Bonus: Get 5% Extra Diamonds with Crypto",
-                loading: "Fetching Data...",
-                error_title: "Connection Failed",
-                no_id: "User ID Not Found",
-                no_id_desc: "Please access this page via a valid campaign link.",
-                total_bought: "Total Diamonds",
-                total_bonus: "Bonus Earned (5%)",
-                history_title: "Transaction History",
-                section_campaign: "Campaign Details",
-                section_transaction: "Transaction Notes",
-                footer_text: "© 2025 MoonPay Campaign Page",
-                campaign_rules: [
-                    "This 5% Diamond Bonus is a <strong>MoonPay Launch Exclusive</strong>. Valid from 1/5 00:00 - 1/9 23:59 UTC+8.",
-                    "The 5% bonus will be distributed approximately <strong>10-15 minutes</strong> after payment completion.",
-                    "<strong>Calculation:</strong> 5% of transaction amount, <strong>rounded to the nearest integer</strong> (e.g., 61,999 × 5% = 3,099.5 ➜ 3,100).",
-                    "Accounts exhibiting abnormal usage patterns may have their eligibility for diamond rebate revoked at the system's discretion.",
-                    "Actual diamond returns shall be subject to system calculations. Data is updated every 5 minutes and requires account login for accurate display. The event page solely presents payment records during the promotional period.。"
-                ],
-                transaction_rules: [
-                    "<strong>Supported Currencies:</strong> Primarily USDT, USDC, ETH, BTC. Please refer to the MoonPay checkout page for actual availability.",
-                    "<strong>Pricing Basis:</strong> The <strong>final crypto amount</strong> confirmed on MoonPay includes exchange rates, Gas Fees, and service fees.",
-                    "<strong>Exchange Rate Volatility:</strong> Quotes have a <strong>time limit</strong>. Please complete the transfer within the timeframe; otherwise, a re-quote is required.",
-                    "<strong>Irreversibility:</strong> Crypto transactions cannot be cancelled once sent. Please verify all info.",
-                    "<strong>Refund Policy:</strong> Diamonds purchased via MoonPay are <strong>generally non-refundable</strong>. Refunds in special cases will be based on fiat value at the time."
+                    "<strong>目前支持币种：</strong> 主要包含 USDT, USDC, ETH, BTC。",
+                    "<strong>交易不可逆性：</strong> 加密货币交易一经发送即无法取消。"
                 ]
             },
             jp: {
@@ -518,23 +349,18 @@
                 section_transaction: "取引に関する注意事項",
                 footer_text: "© 2025 MoonPay キャンペーンページ",
                 campaign_rules: [
-                    "本5%増量キャンペーンは <strong>MoonPay リリース記念限定</strong> です。期間：1/5 00:00 - 1/9 23:59 UTC+8。",
-                    "5%のボーナスダイヤは、MoonPay での決済完了後、約 <strong>10～15分後</strong> に付与されます。",
-                    "<strong>計算方法：</strong> 購入額 × 5% を <strong>四捨五入して整数化</strong>（例：61,999 × 5% = 3,099.5 ➜ 3,100）。",
-                    "アカウントの使用に異常がある場合、システムは返還資格を取り消す権利を有します。",
-                    "実際の還元率はシステム計算を基準とし、データ更新時間は5分です。正確な表示にはアカウントログインが必要です。キャンペーンページにはキャンペーン期間中の取引記録のみが表示されます。"
+                    "本5%増量キャンペーンは <strong>MoonPay リリース記念限定</strong> です。",
+                    "5%のボーナスダイヤは、決済完了後、約 <strong>10～15分後</strong> に付与されます。",
+                    "<strong>計算方法：</strong> 購入額 × 5% を <strong>四捨五入</strong> します。",
+                    "データの更新時間は5分です。"
                 ],
                 transaction_rules: [
-                    "<strong>対応通貨：</strong> 主に USDT, USDC, ETH, BTC。実際の対応通貨は MoonPay 決済画面をご確認ください。",
-                    "<strong>価格基準：</strong> MoonPay 画面で確認した <strong>最終暗号資産額</strong> には、為替レート、ガス代、サービス料が含まれています。",
-                    "<strong>レート変動：</strong> 見積もりには <strong>有効期限</strong> があります。期限内に送金を完了してください。",
-                    "<strong>取引の不可逆性：</strong> 暗号資産の送金はキャンセルできません。情報を十分にご確認ください。",
-                    "<strong>返金ポリシー：</strong> MoonPay で購入したダイヤは <strong>原則として返金不可</strong> です。特例時の返金は当時の法定通貨価値に基づきます。"
+                    "<strong>対応通貨：</strong> USDT, USDC, ETH, BTC。",
+                    "<strong>取引の不可逆性：</strong> 暗号資産の送金はキャンセルできません。"
                 ]
             }
         };
 
-        // --- 2. Application Logic ---
         const app = {
             currentLang: 'en',
             userId: null,
@@ -555,7 +381,6 @@
             detectLanguage: function() {
                 const urlParams = new URLSearchParams(window.location.search);
                 const queryLang = urlParams.get('lang');
-                
                 if (queryLang && TRANSLATIONS[queryLang]) {
                     this.currentLang = queryLang;
                 } else {
@@ -565,128 +390,78 @@
                     else if (browserLang.includes('ja')) this.currentLang = 'jp';
                     else this.currentLang = 'en';
                 }
-                this.updateLangButtons();
             },
 
             setLang: function(lang) {
                 this.currentLang = lang;
-                this.updateLangButtons();
                 this.renderStaticContent();
+                if (this.userId) this.fetchData();
+                else this.renderNoIdState();
             },
 
-            updateLangButtons: function() {
-                document.querySelectorAll('.lang-btn').forEach(btn => {
-                    if (btn.innerText.toLowerCase() === this.currentLang || 
-                       (btn.innerText === '繁' && this.currentLang === 'tw') ||
-                       (btn.innerText === '简' && this.currentLang === 'cn') ||
-                       (btn.innerText === 'EN' && this.currentLang === 'en') ||
-                       (btn.innerText === 'JP' && this.currentLang === 'jp')) {
-                        btn.classList.add('active');
-                    } else {
-                        btn.classList.remove('active');
-                    }
-                });
-            },
-
-            // --- User ID Parsing Logic (Nested URL Support) ---
+            // --- 強化的 ID 抓取邏輯 ---
             parseUserId: function() {
-                const href = window.location.href;
-                console.log("Parsing User ID from:", href);
+                const rawHref = window.location.href;
+                let decodedHref = rawHref;
+                
+                // 嘗試雙重解碼 (應對 Proxy 加密)
+                try {
+                    decodedHref = decodeURIComponent(decodeURIComponent(rawHref));
+                } catch (e) {
+                    decodedHref = decodeURIComponent(rawHref);
+                }
 
-                // 1. Standard Search Params (Normal Page)
+                console.log("Parsing from URL:", decodedHref);
+
+                const idRegex = /user_id(?:=|%3D|:)([a-zA-Z0-9]{24})/i;
+
+                // 1. 標準 URLSearchParams
                 const searchParams = new URLSearchParams(window.location.search);
                 if (searchParams.get('user_id')) {
                     this.userId = searchParams.get('user_id');
                     return;
                 }
 
-                // 2. Hash Params (Normal Hash)
-                if (window.location.hash) {
-                    const hashContent = window.location.hash.substring(1);
-                    const hashParams = new URLSearchParams(hashContent);
-                    if (hashParams.get('user_id')) {
-                        this.userId = hashParams.get('user_id');
-                        return;
-                    }
-                }
-
-                // 3. Nested URL Params (Specifically for iframeProxy)
-                // Looks for 'url' or 'source' param, decodes it, and finds user_id inside
-                const nestedUrlParam = searchParams.get('url') || searchParams.get('source');
-                if (nestedUrlParam) {
-                    try {
-                        const decodedUrl = decodeURIComponent(nestedUrlParam);
-                        console.log("Found nested URL:", decodedUrl);
-                        const match = decodedUrl.match(/user_id=([a-zA-Z0-9]{24})/);
-                        if (match && match[1]) {
-                            this.userId = match[1];
-                            return;
-                        }
-                    } catch (e) {
-                        console.error("Error decoding nested URL:", e);
-                    }
-                }
-
-                // 4. Aggressive Regex with Encoding Support
-                // Matches "user_id=" OR "user_id%3D" followed by 24 char ID
-                // This covers double-encoded scenarios or raw strings
-                const aggressiveMatch = href.match(/user_id(?:=|%3D)([a-zA-Z0-9]{24})/i);
-                if (aggressiveMatch && aggressiveMatch[1]) {
-                    this.userId = aggressiveMatch[1];
-                    console.log("Found ID via Aggressive Regex:", this.userId);
+                // 2. 深度掃描全網址 (包括解碼後的內容)
+                const match = decodedHref.match(idRegex);
+                if (match && match[1]) {
+                    this.userId = match[1];
                     return;
                 }
+
+                // 3. Fallback: 檢查來源頁面 (Referrer)
+                try {
+                    if (document.referrer) {
+                        const refMatch = decodeURIComponent(document.referrer).match(idRegex);
+                        if (refMatch && refMatch[1]) {
+                            this.userId = refMatch[1];
+                        }
+                    }
+                } catch(e) {}
             },
 
-            // --- API Fetching ---
             fetchData: async function() {
                 const contentEl = document.getElementById('api-content');
                 const t = TRANSLATIONS[this.currentLang];
                 
                 try {
-                    const response = await fetch(`${this.apiUrl}/?user_id=${this.userId}`, {
-                        method: 'GET',
-                        credentials: 'omit',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    });
-
-                    if (!response.ok) {
-                        const errData = await response.json();
-                        throw new Error(errData.error || `HTTP ${response.status}`);
-                    }
-
+                    const response = await fetch(`${this.apiUrl}/?user_id=${this.userId}`);
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
                     const data = await response.json();
                     this.renderStats(data);
                     this.renderHistory(data.transaction_history);
-
                 } catch (error) {
-                    console.error("API Error:", error);
-                    contentEl.innerHTML = `
-                        <div class="state-container">
-                            <div style="color: #ff6b6b; font-weight: 600; margin-bottom: 8px;">
-                                ⚠️ ${t.error_title}
-                            </div>
-                            <div class="error-box">
-                                ${error.message}
-                            </div>
-                        </div>
-                    `;
+                    contentEl.innerHTML = `<div class="state-container"><div style="color:#ff6b6b">⚠️ ${t.error_title}</div><div class="debug-url">${error.message}</div></div>`;
                 }
             },
 
-            // --- Render Stats ---
             renderStats: function(data) {
                 const t = TRANSLATIONS[this.currentLang];
-                const contentEl = document.getElementById('api-content');
-                
-                contentEl.innerHTML = `
+                document.getElementById('api-content').innerHTML = `
                     <div class="stat-focus">
                         <span class="stat-label">${t.total_bonus}</span>
-                        <span class="stat-value highlight">+${data.total_bonus_diamonds.toLocaleString()}</span>
+                        <span class="stat-value">+${data.total_bonus_diamonds.toLocaleString()}</span>
                     </div>
-
                     <div class="stat-sub">
                         <span class="stat-label">${t.total_bought}:</span>
                         <span class="stat-value">${data.total_diamond_amount.toLocaleString()}</span>
@@ -697,19 +472,14 @@
             renderHistory: function(history) {
                 const listEl = document.getElementById('history-list');
                 const sectionEl = document.getElementById('history-section');
-                
-                if (!history || history.length === 0) {
-                    sectionEl.style.display = 'none';
-                    return;
-                }
-
+                if (!history || history.length === 0) { sectionEl.style.display = 'none'; return; }
                 sectionEl.style.display = 'block';
                 listEl.innerHTML = history.map(item => `
                     <div class="history-item">
                         <span class="history-date">${item.date}</span>
                         <div>
-                            <span class="history-amount">💎 ${item.diamond_amount.toLocaleString()}</span>
-                            ${item.bonus_diamonds > 0 ? `<span class="history-bonus">(+${item.bonus_diamonds})</span>` : ''}
+                            <span style="font-family:var(--font-code)">💎 ${item.diamond_amount.toLocaleString()}</span>
+                            ${item.bonus_diamonds > 0 ? `<span style="color:var(--crypto-cyan); margin-left:8px">(+${item.bonus_diamonds})</span>` : ''}
                         </div>
                     </div>
                 `).join('');
@@ -717,52 +487,35 @@
 
             renderNoIdState: function() {
                 const t = TRANSLATIONS[this.currentLang];
-                const contentEl = document.getElementById('api-content');
-                
-                // Show Debug Info in No ID State
-                contentEl.innerHTML = `
+                document.getElementById('api-content').innerHTML = `
                     <div class="state-container">
-                        <div style="font-size: 24px; margin-bottom: 10px;">🔍</div>
-                        <div style="font-weight: 600; margin-bottom: 4px;">${t.no_id}</div>
-                        <div style="font-size: 11px; opacity: 0.7;">${t.no_id_desc}</div>
-                        
-                        <!-- Debug Info for User/Dev -->
-                        <div class="debug-url">
-                            Debug Info (Current URL):<br>
-                            ${window.location.href}
-                        </div>
+                        <div style="font-size:24px; margin-bottom:10px">🔍</div>
+                        <div style="font-weight:600">${t.no_id}</div>
+                        <div style="font-size:11px; opacity:0.7">${t.no_id_desc}</div>
+                        <div class="debug-url"><strong>Debug Info (Current URL):</strong><br>${window.location.href}</div>
                     </div>
                 `;
             },
 
             renderStaticContent: function() {
                 const t = TRANSLATIONS[this.currentLang];
-
                 document.querySelectorAll('[data-i18n]').forEach(el => {
                     const key = el.getAttribute('data-i18n');
                     if (t[key]) el.innerHTML = t[key];
                 });
 
-                const renderList = (id, items) => {
-                    const el = document.getElementById(id);
-                    el.innerHTML = items.map(item => `<li>${item}</li>`).join('');
-                };
+                const renderL = (id, items) => { document.getElementById(id).innerHTML = items.map(i => `<li>${i}</li>`).join(''); };
+                renderL('campaign-list', t.campaign_rules);
+                renderL('transaction-list', t.transaction_rules);
 
-                renderList('campaign-list', t.campaign_rules);
-                renderList('transaction-list', t.transaction_rules);
-
-                if (this.userId && document.querySelector('.stat-focus')) {
-                    this.fetchData();
-                } else if (!this.userId) {
-                    this.renderNoIdState();
-                }
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    const b = btn.innerText.toLowerCase();
+                    btn.classList.toggle('active', b === this.currentLang || (b === '繁' && this.currentLang === 'tw') || (b === '简' && this.currentLang === 'cn') || (b === 'jp' && this.currentLang === 'jp'));
+                });
             }
         };
 
-        document.addEventListener('DOMContentLoaded', () => {
-            app.init();
-        });
-
+        document.addEventListener('DOMContentLoaded', () => app.init());
     </script>
 </body>
 </html>
