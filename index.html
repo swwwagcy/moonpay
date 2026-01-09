@@ -588,30 +588,53 @@
                 });
             },
 
-            // --- User ID Parsing Logic (Aggressive Regex) ---
+            // --- User ID Parsing Logic (Nested URL Support) ---
             parseUserId: function() {
-                const url = window.location.href;
-                console.log("Parsing User ID from:", url);
+                const href = window.location.href;
+                console.log("Parsing User ID from:", href);
 
-                // 優先使用 Regex 暴力搜尋，不依賴 URL 結構
-                // 尋找 user_id= 後面接的 24 碼英數字
-                // 這樣可以無視 URL 是否被截斷、? 是否變成 &、或者被放在 hash 中
-                const aggressiveMatch = url.match(/user_id[=:]?([a-zA-Z0-9]{24})/);
-                
-                if (aggressiveMatch && aggressiveMatch[1]) {
-                    this.userId = aggressiveMatch[1];
-                    console.log("Found ID via Regex:", this.userId);
+                // 1. Standard Search Params (Normal Page)
+                const searchParams = new URLSearchParams(window.location.search);
+                if (searchParams.get('user_id')) {
+                    this.userId = searchParams.get('user_id');
                     return;
                 }
 
-                // Fallback: 尋找任何連續的 24 碼 Hex 字串 (如果是直接把 ID 塞在網址裡的情況)
-                // 為了避免誤判，我們只在明確找不到 user_id= 的時候才用這個
-                // 24-char hex string (MongoDB ID standard)
-                const hexMatch = url.match(/[^a-zA-Z0-9]([a-fA-F0-9]{24})[^a-zA-Z0-9]?$/);
-                if (hexMatch && hexMatch[1]) {
-                     // 再次確認這不是其他像是 session_id 之類的，這裡只能假設是 ID
-                     // 這裡比較冒險，建議以前面 user_id= 為主
-                     // this.userId = hexMatch[1]; 
+                // 2. Hash Params (Normal Hash)
+                if (window.location.hash) {
+                    const hashContent = window.location.hash.substring(1);
+                    const hashParams = new URLSearchParams(hashContent);
+                    if (hashParams.get('user_id')) {
+                        this.userId = hashParams.get('user_id');
+                        return;
+                    }
+                }
+
+                // 3. Nested URL Params (Specifically for iframeProxy)
+                // Looks for 'url' or 'source' param, decodes it, and finds user_id inside
+                const nestedUrlParam = searchParams.get('url') || searchParams.get('source');
+                if (nestedUrlParam) {
+                    try {
+                        const decodedUrl = decodeURIComponent(nestedUrlParam);
+                        console.log("Found nested URL:", decodedUrl);
+                        const match = decodedUrl.match(/user_id=([a-zA-Z0-9]{24})/);
+                        if (match && match[1]) {
+                            this.userId = match[1];
+                            return;
+                        }
+                    } catch (e) {
+                        console.error("Error decoding nested URL:", e);
+                    }
+                }
+
+                // 4. Aggressive Regex with Encoding Support
+                // Matches "user_id=" OR "user_id%3D" followed by 24 char ID
+                // This covers double-encoded scenarios or raw strings
+                const aggressiveMatch = href.match(/user_id(?:=|%3D)([a-zA-Z0-9]{24})/i);
+                if (aggressiveMatch && aggressiveMatch[1]) {
+                    this.userId = aggressiveMatch[1];
+                    console.log("Found ID via Aggressive Regex:", this.userId);
+                    return;
                 }
             },
 
