@@ -150,8 +150,6 @@
         }
 
         /* --- Hierarchical Stats Styles --- */
-        
-        /* Primary (Bonus) Area */
         .stat-focus {
             margin-bottom: 32px;
             position: relative;
@@ -177,7 +175,6 @@
             display: block;
         }
 
-        /* Secondary (Total) Area */
         .stat-sub {
             display: inline-flex;
             align-items: baseline;
@@ -226,6 +223,21 @@
             font-size: 12px;
             margin-top: 10px;
             text-align: left;
+        }
+
+        /* Debug Info */
+        .debug-url {
+            margin-top: 16px;
+            padding: 10px;
+            background: rgba(0,0,0,0.3);
+            border: 1px dashed rgba(255,255,255,0.2);
+            border-radius: 6px;
+            font-family: var(--font-code);
+            font-size: 10px;
+            color: var(--text-muted);
+            word-break: break-all;
+            text-align: center;
+            line-height: 1.4;
         }
 
         /* History List */
@@ -576,31 +588,30 @@
                 });
             },
 
-            // --- User ID Parsing Logic ---
+            // --- User ID Parsing Logic (Aggressive Regex) ---
             parseUserId: function() {
                 const url = window.location.href;
+                console.log("Parsing User ID from:", url);
+
+                // 優先使用 Regex 暴力搜尋，不依賴 URL 結構
+                // 尋找 user_id= 後面接的 24 碼英數字
+                // 這樣可以無視 URL 是否被截斷、? 是否變成 &、或者被放在 hash 中
+                const aggressiveMatch = url.match(/user_id[=:]?([a-zA-Z0-9]{24})/);
                 
-                // 1. URL Search Params (?user_id=)
-                const searchParams = new URLSearchParams(window.location.search);
-                if (searchParams.get('user_id')) {
-                    this.userId = searchParams.get('user_id');
+                if (aggressiveMatch && aggressiveMatch[1]) {
+                    this.userId = aggressiveMatch[1];
+                    console.log("Found ID via Regex:", this.userId);
                     return;
                 }
 
-                // 2. Hash Params (#user_id=)
-                if (window.location.hash) {
-                    const hashContent = window.location.hash.substring(1);
-                    const hashParams = new URLSearchParams(hashContent);
-                    if (hashParams.get('user_id')) {
-                        this.userId = hashParams.get('user_id');
-                        return;
-                    }
-                }
-
-                // 3. Regex Fallback
-                const match = url.match(/user_id=([a-zA-Z0-9]{24})/);
-                if (match && match[1]) {
-                    this.userId = match[1];
+                // Fallback: 尋找任何連續的 24 碼 Hex 字串 (如果是直接把 ID 塞在網址裡的情況)
+                // 為了避免誤判，我們只在明確找不到 user_id= 的時候才用這個
+                // 24-char hex string (MongoDB ID standard)
+                const hexMatch = url.match(/[^a-zA-Z0-9]([a-fA-F0-9]{24})[^a-zA-Z0-9]?$/);
+                if (hexMatch && hexMatch[1]) {
+                     // 再次確認這不是其他像是 session_id 之類的，這裡只能假設是 ID
+                     // 這裡比較冒險，建議以前面 user_id= 為主
+                     // this.userId = hexMatch[1]; 
                 }
             },
 
@@ -684,11 +695,19 @@
             renderNoIdState: function() {
                 const t = TRANSLATIONS[this.currentLang];
                 const contentEl = document.getElementById('api-content');
+                
+                // Show Debug Info in No ID State
                 contentEl.innerHTML = `
                     <div class="state-container">
                         <div style="font-size: 24px; margin-bottom: 10px;">🔍</div>
                         <div style="font-weight: 600; margin-bottom: 4px;">${t.no_id}</div>
                         <div style="font-size: 11px; opacity: 0.7;">${t.no_id_desc}</div>
+                        
+                        <!-- Debug Info for User/Dev -->
+                        <div class="debug-url">
+                            Debug Info (Current URL):<br>
+                            ${window.location.href}
+                        </div>
                     </div>
                 `;
             },
